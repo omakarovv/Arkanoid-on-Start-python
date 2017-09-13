@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
 import pygame
 import random
-window = pygame.display.set_mode((400, 400))
+window = pygame.display.set_mode((640, 400))
 pygame.display.set_caption("The beginning of Arkanoid")
+
 
 bg = pygame.image.load("images/background.jpg")
 fireball = pygame.image.load("animation/fireball.gif")
 barrier = pygame.image.load("images/barrier.jpg")
 
-square = pygame.Surface((10, 10))
-#barrier = pygame.Surface((50,10))
-square.fill((0, 255, 0))
-#barrier.fill((245,232,232))
+
+score_bar = pygame.Surface((150, 100))
+score_bar.fill((142, 137, 137))
+window.blit(score_bar, (450, 50))
+
+border_line = pygame.Surface((10, 400))
+border_line.fill((142, 137, 137))
+window.blit(border_line, (400, 0))
+
 
 x = random.randint(0, 400)
 y = random.randint(200, 250)
