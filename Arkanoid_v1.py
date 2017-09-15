@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import pygame
 import random
+from pygame.locals import *
+
+pygame.init()
+
 window = pygame.display.set_mode((640, 400))
 pygame.display.set_caption("The beginning of Arkanoid")
 
@@ -10,12 +14,14 @@ fireball = pygame.image.load("animation/fireball.gif")
 barrier = pygame.image.load("images/barrier.jpg")
 
 
+### Score bar and Score ###
 score_bar = pygame.Surface((150, 100))
-score_bar.fill((142, 137, 137))
-window.blit(score_bar, (450, 50))
+score = 0
+myfont = pygame.font.Font(None, 30)
+
 
 border_line = pygame.Surface((10, 400))
-border_line.fill((142, 137, 137))
+border_line.fill((206, 206, 206))
 window.blit(border_line, (400, 0))
 
 
@@ -79,12 +85,16 @@ while done:
         square_go_right = True
 
 
+    scoretext = myfont.render("Score {0}".format(score), True, (0,0,0))
+    window.blit(score_bar, (450, 50))
+    score_bar.fill((206, 206, 206))
+    window.blit(scoretext, (460, 90))
     window.blit(barrier, (moveto, 390))
     pygame.display.flip()
     pygame.time.delay(delay)
 
     if keyinput[pygame.K_DOWN]:
-        delay += 1
+        score += 1
     elif keyinput[pygame.K_UP]:
-        delay -= 1
+        score -= 1
     pygame.time.delay(delay)
